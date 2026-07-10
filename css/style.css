@@ -1,0 +1,340 @@
+/* ============================================================
+   Expense & Budget Visualizer — style.css
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. Global Reset & Box Model
+   ---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  color: #1a1a1a;
+  background-color: #f0f4f8;
+  line-height: 1.5;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ----------------------------------------------------------
+   2. App Wrapper — single-column centered layout
+   ---------------------------------------------------------- */
+.app-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ----------------------------------------------------------
+   3. Section cards
+   ---------------------------------------------------------- */
+section {
+  width: 100%;
+  max-width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+section h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  margin-bottom: 0.875rem;
+}
+
+/* ----------------------------------------------------------
+   4. Balance Display
+   ---------------------------------------------------------- */
+#balance-section {
+  text-align: center;
+  background: linear-gradient(135deg, #1a7a5e, #2d6a4f);
+  color: #ffffff;
+}
+
+#balance-section h2 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#balance-display {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+/* ----------------------------------------------------------
+   5. Input Form
+   ---------------------------------------------------------- */
+#transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ----------------------------------------------------------
+   6. Interactive Controls — min 44×44px touch targets
+   ---------------------------------------------------------- */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background-color: #f9fafb;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.15);
+  background-color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* Custom dropdown arrow */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+}
+
+button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+#transaction-form button[type="submit"] {
+  background-color: #2d6a4f;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+#transaction-form button[type="submit"]:hover {
+  background-color: #245a41;
+}
+
+/* ----------------------------------------------------------
+   7. Inline Error Messages
+   ---------------------------------------------------------- */
+.error-msg {
+  display: none;
+  font-size: 0.78rem;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.error-msg.visible {
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   8. Transaction List
+   ---------------------------------------------------------- */
+#transaction-list-container {
+  overflow-y: auto;
+  max-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Scrollbar styling */
+#transaction-list-container::-webkit-scrollbar {
+  width: 4px;
+}
+#transaction-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+#transaction-list-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 0.75rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.item-name {
+  flex: 1 1 auto;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #111827;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.item-amount {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #2d6a4f;
+  white-space: nowrap;
+}
+
+.item-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Category badge colors */
+.item-category.cat-food      { background-color: #fef3c7; color: #92400e; }
+.item-category.cat-transport { background-color: #dbeafe; color: #1e40af; }
+.item-category.cat-fun       { background-color: #fce7f3; color: #9d174d; }
+/* Fallback */
+.item-category                { background-color: #e5e7eb; color: #374151; }
+
+.btn-delete {
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0.25rem 0.6rem;
+  background-color: transparent;
+  color: #dc2626;
+  border: 1.5px solid #dc2626;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-delete:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+#empty-state-msg {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+/* ----------------------------------------------------------
+   9. Chart Section
+   ---------------------------------------------------------- */
+#chart-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+#spending-chart {
+  max-width: 100%;
+}
+
+#no-data-msg {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+/* ----------------------------------------------------------
+   10. Responsive overrides for very narrow screens (320px)
+   ---------------------------------------------------------- */
+@media screen and (max-width: 360px) {
+  .app-wrapper {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  section {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  #balance-display {
+    font-size: 1.9rem;
+  }
+
+  .transaction-item {
+    flex-wrap: wrap;
+  }
+
+  .btn-delete {
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .app-wrapper {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
